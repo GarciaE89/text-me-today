@@ -37,9 +37,9 @@
             <div class="btn-group sidebarBtn">
                 <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Text Me <span class="caret"></span></button>
                 <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Add Text</a></li>
-                  <li><a href="#">Remove Text</a></li>
-                  <li><a href="#">Update</a></li>
+                  <li><a href="#" data-toggle="modal" data-target="#task-form-modal">Add Text</a></li>
+                  <li><a href="#">Example</a></li>
+                  <li><a href="#">Example</a></li>
                   <li class="divider"></li>
                   <li><a href="#">Remove All Texts</a></li>
                 </ul>
@@ -142,6 +142,74 @@
           </div>
         </div>
     </footer>
+
+    <div class="modal" id="task-form-modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h4 class="modal-title">Add A Text</h4>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-xs-6">
+                  <label>Time</label>
+                  <input type="text" class="form-control" placeholder="time">
+                </div>
+                <div class="col-xs-6">
+                  <label>Phone</label>
+                  <input type="text" class="form-control" placeholder="phone">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <label>Message</label>
+                  <textarea class="form-control" rows="3">Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac</textarea>
+                </div>
+              </div>
+              <label>Include the following options</label>
+              <div class="row">
+                <div class="col-xs-6">
+                    Weather
+                </div>
+                <div class="col-xs-6">
+                    <label class="toggle">
+                    <input type="checkbox" id="weather">
+                    <span class="handle"></span>
+                    </label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-6">
+                    Traffic
+                </div>
+                <div class="col-xs-6">
+                    <label class="toggle">
+                    <input type="checkbox" id="traffic">
+                    <span class="handle"></span>
+                    </label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-6">
+                    Daily Affirmation
+                </div>
+                <div class="col-xs-6">
+                    <label class="toggle">
+                    <input type="checkbox" id="afirmation">
+                    <span class="handle"></span>
+                    </label>
+                </div>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn">Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
     <!-- Bootstrap -->
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
