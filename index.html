@@ -5,9 +5,152 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://bootflat.github.io/bootflat/css/bootflat.css">
+    <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 <body>
-    <h1>TACOS</h1>
+    <!-- header with nav bar -->
+    <header class="col-md-12">
+        <nav class="navbar navbar-inverse roundedGray" role="navigation">
+            <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-7">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" id="whiteText">Text-Me-Today</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-7">
+                <p class="navbar-text navbar-right"><a class="navbar-link" href="" id="whiteText">Daily texts made easy</a></p>
+            </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="row">
+
+        <!-- Sidebar, moves to top on small devices -->  
+        <div class="col-md-2 sideBar roundedGray">
+            <div class="btn-group sidebarBtn">
+                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Text Me <span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">Add Text</a></li>
+                  <li><a href="#">Remove Text</a></li>
+                  <li><a href="#">Update</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Remove All Texts</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main timeline window, moves to bottom on small devices -->  
+        <div class="col-md-9">
+            <div class="example">
+                <div class="row">
+                  <div class="col-md-12">
+                      <div class="timeline">
+                          <dl>
+                              <dt id="date"></dt> <!-- Todays date -->  
+
+                                <!-- Example text events.  Code will need to dynamically generate these. -->
+                                <!-- event start-->  
+                                <dd class="pos-right clearfix">
+                                    <div class="circ"></div>
+                                    <div class="time">9:00am</div>
+                                    <div class="events">
+                                        <div class="pull-left">
+                                            <img class="events-object img-rounded thumbnails" src="./assets/img/cat.jpg">
+                                        </div>
+                                        <div class="events-body">
+                                            <h4 class="events-heading">Example text event 1</h4>
+                                            <p>For coding purposes the code will need to adjust the position on the timeline based on the existing current times.  This will all essentially be a <a href="https://www.w3schools.com/js/js_array_sort.asp">sorted array</a> that will then display items in THIS format.</p>
+                                        </div>
+                                    </div>
+                                </dd>
+                                <!-- event end-->
+
+                                <!-- event start-->
+                                <dd class="pos-left clearfix">
+                                    <div class="circ"></div>
+                                    <div class="time">3:00pm</div>
+                                    <div class="events">
+                                        <div class="pull-left">
+                                            <img class="events-object img-rounded thumbnails" src="./assets/img/dog.jpg">
+                                        </div>
+                                        <div class="events-body">
+                                            <h4 class="events-heading">Example text event 2</h4>
+                                            <p>Coders will need to decide how to check realtime so the code knows when to send this text.  It could run every second, every 10 seconds or longer.  Remember the more checks per second, the more processing power this will take.</p>
+                                        </div>
+                                    </div>
+                                </dd>
+                                <!-- event end-->
+
+                                <!-- event start-->
+                                <dd class="pos-right clearfix">
+                                    <div class="circ"></div>
+                                    <div class="time">5:00pm</div>
+                                    <div class="events">
+                                        <div class="pull-left">
+                                            <img class="events-object img-rounded thumbnails" src="./assets/img/cat2.jpg">
+                                        </div>
+                                        <div class="events-body">
+                                            <h4 class="events-heading">Example text event 3</h4>
+                                            <p>This entire site is very mobile responsive, go ahead, give it a try!</p>
+                                        </div>
+                                    </div>
+                                </dd>
+                            <!-- event end-->
     
+                          </dl>
+                      </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+        
+
+    <!-- Footer -->
+    <footer class="col-md-12">
+        <div class="footer roundedGray">
+          <div class="container">
+            <div class="clearfix">
+              <div class="footer-logo"><a href="#"><img src="./assets/img/footer-logo.png">Text-Me-Today</a></div>
+              <dl class="footer-nav">
+                <dt class="nav-title">PORTFOLIO</dt>
+                <dd class="nav-item"><a href="#">Web Design</a></dd>
+                <dd class="nav-item"><a href="#">Branding &amp; Identity</a></dd>
+              </dl>
+              <dl class="footer-nav">
+                <dt class="nav-title">ABOUT</dt>
+                <dd class="nav-item"><a href="#">The Company</a></dd>
+              </dl>
+              <dl class="footer-nav">
+                <dt class="nav-title">GALLERY</dt>
+                <dd class="nav-item"><a href="#">Flickr</a></dd>
+                <dd class="nav-item"><a href="#">Picasa</a></dd>
+              </dl>
+              <dl class="footer-nav">
+                <dt class="nav-title">CONTACT</dt>
+                <dd class="nav-item"><a href="#">Basic Info</a></dd>
+              </dl>
+            </div>
+            <div class="footer-copyright text-center">Made by John Woodland, Emmanuel Garcia, Riley Smith and Jaxson Connors </div>
+          </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap -->
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+    <!-- Bootflat's JS files.-->
+    <script src="https://bootflat.github.io/bootflat/js/icheck.min.js"></script>
+    <script src="https://bootflat.github.io/bootflat/js/jquery.fs.selecter.min.js"></script>
+    <script src="https://bootflat.github.io/bootflat/js/jquery.fs.stepper.min.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
