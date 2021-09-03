@@ -32,7 +32,7 @@ var displayEvents = function() {
         return a.time - b.time;
     })
 
-    var mainBox = document.querySelector("#date")
+    var mainBox = document.querySelector("#timeline-line")
     //itterate through all events and create elements and append them to the page
     for (var i = 0; i < textEvents.length; i++) {
         console.log(textEvents[i].title);
