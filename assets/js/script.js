@@ -21,7 +21,7 @@ var textEvents = [
     {
         time: 1700,
         title: "Title three",
-        what: "this would say one number 3S is",
+        what: "this would say one number 3 is",
         img: "./assets/img/cat2.jpg"
     },
 ];
