@@ -30,6 +30,14 @@
     margin-top: 30px;
 }
 
+#timeInput {
+    margin-right: -29px;
+}
+
+#ampm {
+    margin-top: 30px; 
+}
+
 @media screen and (max-width: 980px) {
     /* Used to shrink sidebar when on small screen device */ 
     .sideBar {
