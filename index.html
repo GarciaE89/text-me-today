@@ -152,11 +152,21 @@
             </div>
             <div class="modal-body">
               <div class="row">
-                <div class="col-xs-6">
+                <div class="col-xs-3" id="timeInput">
                   <label>Time</label>
+
                   <input type="text" id="timeHolder" class="form-control" placeholder="3:00pm">
+
                 </div>
-                <div class="col-xs-6">
+                <div class="col-xs-2">             
+                  <form id="ampm" action="#" method="GET">
+                    <select name="selecter_basic" id="selecter_basic" class="selecter_basic">
+                      <option value ="am">AM</option>
+                      <option value ="pm">PM</option>
+                    </select>
+                  </form>
+                </div>  
+                <div class="col-xs-5">
                   <label>Phone</label>
                   <input type="text" class="form-control" id="phone-number" placeholder="123-456-7890">
                 </div>
