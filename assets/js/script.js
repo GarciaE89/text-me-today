@@ -1,38 +1,25 @@
 // Used to have current date display on timeline, could be updated for multiple days. 
-n =  new Date();
-y = n.getFullYear();
-m = n.getMonth() + 1;
-d = n.getDate();
-document.getElementById("date").innerHTML = m + "/" + d + "/" + y;
+var addDate = function() {
+    n =  new Date();
+    y = n.getFullYear();
+    m = n.getMonth() + 1;
+    d = n.getDate();
+    document.getElementById("date").innerHTML = m + "/" + d + "/" + y;
+}
 
-var textEvents = [
-    {
-        time: 1800,
-        title: "Title one",
-        what: "this would say one number 1 is",
-        img: "./assets/img/cat.jpg"
-    },
-    {
-        time: 1500,
-        title: "Title two",
-        what: "this would say one number 2 is",
-        img: "./assets/img/dog.jpg"
-    },
-    {
-        time: 1700,
-        title: "Title three",
-        what: "this would say one number 3S is",
-        img: "./assets/img/cat2.jpg"
-    },
-];
+
+var textEvents = [];
 
 var displayEvents = function() {
-    //var list = JSON.parse(localStorage.getItem("textlist")) || [];
+    var textEvents = JSON.parse(localStorage.getItem("textList"));
+    console.log(textEvents);
     textEvents.sort(function(a,b) {
         return a.time - b.time;
     })
 
     var mainBox = document.querySelector("#timeline-line")
+    mainBox.innerHTML = "<dt id='date'></dt>";
+    addDate();
     //itterate through all events and create elements and append them to the page
     for (var i = 0; i < textEvents.length; i++) {
         console.log(textEvents[i].title);
@@ -105,14 +92,30 @@ var displayEvents = function() {
         newItem.appendChild(eventbox);
         //append new item to the main body
         mainBox.appendChild(newItem);
-
-
-
-
-
-
-        //newItem.classList = ""
     }
 }
 
+var saveEvents = function() {
+    var newEvent = {};
+    var getTime = document.querySelector("#timeHolder").value;
+    var colonLoc = getTime.indexOf(":");
+    var theTime = getTime.slice(0, colonLoc) + getTime.slice(colonLoc + 1);
+    theTime = parseInt(theTime);
+    var phoneNumber = document.querySelector("#phone-number").value;
+    var theMessage = document.querySelector("#message-input").value;
+    var weatherBox = document.querySelector("#weather").value;
+    var cityWeather = document.querySelector("#city-field").value;
+    console.log(weatherBox);
+    newEvent.time = theTime;
+    newEvent.title = "temporary title";
+    newEvent.what = theMessage;
+    newEvent.number = phoneNumber;
+    newEvent.city = cityWeather;
+    textEvents.push(newEvent);
+    localStorage.setItem('textList', JSON.stringify(textEvents));
+    displayEvents();
+}
+
+
+document.getElementById("send-btn").addEventListener("click", saveEvents);
 displayEvents();

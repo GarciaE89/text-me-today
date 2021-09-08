@@ -52,7 +52,7 @@
                 <div class="row">
                   <div class="col-md-12">
                       <div class="timeline">
-                          <dl id="timeline">
+                          <dl id="timeline-line">
                               <dt id="date"></dt> <!-- Todays date -->  
 
                                 <!-- Example text events.  Code will need to dynamically generate these. -->
@@ -154,7 +154,9 @@
               <div class="row">
                 <div class="col-xs-3" id="timeInput">
                   <label>Time</label>
-                  <input type="text" class="form-control" placeholder="3:00">
+
+                  <input type="text" id="timeHolder" class="form-control" placeholder="3:00pm">
+
                 </div>
                 <div class="col-xs-2">             
                   <form id="ampm" action="#" method="GET">
@@ -166,19 +168,19 @@
                 </div>  
                 <div class="col-xs-5">
                   <label>Phone</label>
-                  <input type="text" class="form-control" placeholder="123-456-7890">
+                  <input type="text" class="form-control" id="phone-number" placeholder="123-456-7890">
                 </div>
               </div>
               <div class="row">
                 <div class="col-xs-12">
                   <label>Message</label>
-                  <textarea class="form-control" rows="3">Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac</textarea>
+                  <textarea class="form-control" id="message-input" rows="3">Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac</textarea>
                 </div>
               </div>
               <div class="row">
                 <div class="col-xs-12">
                   <label>Which city do you live in?</label>
-                  <input type="text" class="form-control" placeholder="San Diego">
+                  <input type="text" id="city-field" class="form-control" placeholder="San Diego">
                 </div>
               </div>
               <label>Include the following options</label>
@@ -214,7 +216,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn">Send</button>
+              <button type="button" id="send-btn" class="btn">Send</button>
             </div>
           </div>
         </div>
