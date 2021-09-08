@@ -24,8 +24,6 @@ var displayEvents = function() {
     //itterate through all events and create elements and append them to the page
     if(textEvents) {
         for (var i = 0; i < textEvents.length; i++) {
-            console.log(textEvents[i].title);
-            console.log(textEvents[i].what);
             var newItem = document.createElement("dd");
             if (i % 2 === 0) {
                 newItem.classList = "pos-right clearfix";
@@ -68,7 +66,7 @@ var displayEvents = function() {
             //create img
             var img = document.createElement("img");
             img.classList = "events-object img-rounded thumbnails";
-            img.setAttribute("src", textEvents[i].img);
+            img.setAttribute("src", textEvents[i].icon);
             //append img to img div
             imgBox.appendChild(img);
             //append img div to events box
@@ -89,15 +87,6 @@ var displayEvents = function() {
     
             //append event body to the eventbox
             eventbox.appendChild(eventBody);
-            
-            // create delete button
-            //var deleteBtn = document.createElement("button");
-            //deleteBtn.setAttribute("type", "button");
-            //deleteBtn.classList = "btn btn-danger";
-            //deleteBtn.textContent = "Delete";
-
-            //append delete to event
-            //newItem.appendChild(deleteBtn);
 
             //append event box to dd
             newItem.appendChild(eventbox);
@@ -153,20 +142,41 @@ var saveEvents = function() {
         var cityBox = document.querySelector("#city-box");
         cityBox.classList = "col-xs-12 form-group has-error has-feedback";
     }
-    if(theTime && phoneNumber && theMessage  && cityWeather || weatherBox || affirmationBox || sillyBox) {
-        console.log("met all requirements");
+    if(theTime && phoneNumber && theMessage  && cityWeather) {
         newEvent.time = theTime;
-        newEvent.title = "temporary title";
+        if(weatherBox === true) {
+            newEvent.title = "Weather Notification";
+            newEvent.icon = "./assets/img/weather.gif"
+        }
+        else if (affirmationBox === true) {
+            newEvent.title = "Daily Affirmation";
+            newEvent.icon = "./assets/img/affirmation.gif"
+        }
+        else if (sillyBox === true) {
+            newEvent.title = "Daily Joke"
+            newEvent.icon = "./assets/img/random.gif"
+        }
+        else {
+            newEvent.title = "Scheduled text"
+            newEvent.icon = "./assets/img/textme.gif"
+        }
         newEvent.what = theMessage;
         newEvent.number = phoneNumber;
         newEvent.city = cityWeather;
         textEvents.push(newEvent);
         localStorage.setItem('textList', JSON.stringify(textEvents));
         displayEvents();
-    }
-    
+        var theModal = document.querySelector("#send-btn");
+        theModal.setAttribute("data-dismiss", "modal");
+    }    
 }
 
+var removeAll = function() {
+    textEvents = [];
+    localStorage.setItem('textList', JSON.stringify(textEvents));
+    displayEvents();
+}
 
 document.getElementById("send-btn").addEventListener("click", saveEvents);
+document.getElementById("remove-all").addEventListener("click", removeAll);
 displayEvents();
