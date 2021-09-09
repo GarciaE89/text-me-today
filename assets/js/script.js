@@ -180,3 +180,64 @@ var removeAll = function() {
 document.getElementById("send-btn").addEventListener("click", saveEvents);
 document.getElementById("remove-all").addEventListener("click", removeAll);
 displayEvents();
+
+// fetch weather API
+async function fetchWeather() {
+    const resp = await fetch('https://api.openweathermap.org/data/2.5/weather?q=' + document.querySelector("#city-field").value + '&appid=075bfb0a221c22109566147d3393fe9b');
+
+    return resp.json();
+}
+
+// fetch affirmation quote API
+async function fetchAff() {
+    const resp = await fetch("https://dulce-affirmations-api.herokuapp.com/affirmation");
+    
+    return resp.json();
+}
+
+// fetch joke API
+async function fetchJoke() {
+    const resp = await fetch('http://api.icndb.com/jokes/random?');
+
+    return resp.json();
+}
+
+// textbelt API function
+function sendText(theMessage, phoneNumber) {
+    fetch('https://textbelt.com/text', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        phone: phoneNumber,
+        message: theMessage + extraMessages,
+        key: 'c2d73da2fe22fe551cc99c64af7206fef2208645cX0nY7S9R2EJlnSyezQd3HnzK',
+      }),
+    }).then(response => {
+    return response.json();
+    }).then(data => {
+      console.log(data);
+    });
+};
+
+var extraMessages = '';
+
+// time audit
+  setInterval(function() {
+    textEvents.forEach(async function(event, i) {
+        let time = new Date();
+        let currentTime = time.getHours().toString() + time.getMinutes().toString();
+
+        if (currentTime == event.time) {
+            if (document.getElementById('weather').checked)
+                await fetchWeather().then(data => extraMessages += '\nLocal Weather: ' + data.weather[0].description);
+            if (document.getElementById('affirmation').checked)
+                await fetchAff().then(data => extraMessages += '\n' + data[0].phrase);
+            if (document.getElementById('other').checked)
+                await fetchJoke().then(data => extraMessages += '\n' + data.value.joke);
+
+            sendText(event.what, event.number);
+            extraMessages = '';
+            textEvents.splice(i, 1);
+        }
+    });
+  }, 2000);
