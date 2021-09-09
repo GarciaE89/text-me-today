@@ -18,11 +18,21 @@ var displayEvents = function() {
         })
     }
     localStorage.setItem('textList', JSON.stringify(textEvents));
-
+    var len = textEvents.length;
+    if(len === 0) {
+        var mainBox = document.querySelector("#timeline")
+        var mainArea = document.createElement("img");
+        mainArea.setAttribute("src", "./assets/img/textmetoday.jpg")
+        mainBox.appendChild(mainArea);
+    }
+    else {
+        var jumpImg = document.querySelector("#timeline");
+        jumpImg.innerHTML = "<dl id='timeline-line'></dl>";
+        var mainBox = document.querySelector("#timeline-line")
+        mainBox.innerHTML = "<dt id='date'></dt>";
+        addDate();
+    }
     
-    var mainBox = document.querySelector("#timeline-line")
-    mainBox.innerHTML = "<dt id='date'></dt>";
-    addDate();
     //itterate through all events and create elements and append them to the page
     if(textEvents) {
         for (var i = 0; i < textEvents.length; i++) {
@@ -46,14 +56,14 @@ var displayEvents = function() {
                 time = time - 1200;
             }
             time = time.toString();
-            if(time.length = 3) {
+            if(time.length === 3) {
                 var starttime = time.slice(0,1);
                 var endtime = time.slice(1,3);
                 var finaltime = starttime + ":" + endtime; 
             }
-            else {
-                var starttime = time.slice(0,1);
-                var endtime = time.slice(1,3);
+            else if(time.length === 4) {
+                var starttime = time.slice(0,2);
+                var endtime = time.slice(2,4);
                 var finaltime = starttime + ":" + endtime; 
             }
             timeEl.textContent = finaltime;
@@ -64,7 +74,13 @@ var displayEvents = function() {
             eventbox.classList = "events";
             //create img div
             var imgBox = document.createElement("div");
-            imgBox.classList = "pull-left";
+            if (i % 2 === 0) {
+                imgBox.classList = "pull-left";
+            }
+            else {
+                imgBox.classList = "pull-right";
+            }
+            //imgBox.classList = "pull-left";
             //create img
             var img = document.createElement("img");
             img.classList = "events-object img-rounded thumbnails";
@@ -99,10 +115,6 @@ var displayEvents = function() {
     }  
 }
 
-var refreshSave = function() {
-    localStorage.setItem('textList', JSON.stringify(textEvents));
-}
-
 var saveEvents = function() {
     var newEvent = {};
     var getTime = document.querySelector("#timeHolder").value;
@@ -111,8 +123,8 @@ var saveEvents = function() {
         timeBox.classList = "col-xs-3 form-group has-error has-feedback";
     }
     else {
-        var colonLoc = getTime.indexOf(":");
-        var theTime = getTime.slice(0, colonLoc) + getTime.slice(colonLoc + 1);
+        //var colonLoc = getTime.indexOf(":");
+        var theTime = getTime.replace(":", "");
         theTime = parseInt(theTime);
         var amPm = document.querySelector("#selecter_basic").value;
         if(amPm === "pm") {
@@ -128,7 +140,6 @@ var saveEvents = function() {
     else{
         while(phoneNumber.includes("-")) {
             phoneNumber = phoneNumber.replace("-", "");
-            console.log(phoneNumber)
         }
     }
     var theMessage = document.querySelector("#message-input").value;
@@ -174,31 +185,21 @@ var saveEvents = function() {
         displayEvents();
         var theModal = document.querySelector("#send-btn");
         theModal.setAttribute("data-dismiss", "modal");
-        //location.reload();
-        var modalBox = document.querySelector("#task-form-modal").getAttribute("aria-hidden");
-        console.log(modalBox);
-        function waitATick() {
-            setTimeout(function() {
+        setTimeout(function() {
                 clearModal();
             }, 4000)
-        }
-        //clearModal();
     }    
 }
 
 var clearModal = function() {
-    var timeField = document.querySelector("#timeHolder");
-    timeField.textContent = "";
     var modal = document.querySelector("#send-btn");
-    var modalBox = document.querySelector("#task-form-modal").getAttribute("aria-hidden");
-    console.log(modalBox);
-    //modal.removeAttribute("data-dismiss", "modal");
+    modal.removeAttribute("data-dismiss", "modal");
 }
 
 var removeAll = function() {
     textEvents = [];
     localStorage.setItem('textList', JSON.stringify(textEvents));
-    displayEvents();
+    location.reload();
 }
 
 document.getElementById("send-btn").addEventListener("click", saveEvents);
