@@ -11,12 +11,14 @@ var addDate = function() {
 var textEvents = [];
 
 var displayEvents = function() {
-    var textEvents = JSON.parse(localStorage.getItem("textList"));
+    var textEvents = JSON.parse(localStorage.getItem("textList")) || [];
     if(textEvents) {
         textEvents.sort(function(a,b) {
             return a.time - b.time;
         })
     }
+    localStorage.setItem('textList', JSON.stringify(textEvents));
+
     
     var mainBox = document.querySelector("#timeline-line")
     mainBox.innerHTML = "<dt id='date'></dt>";
@@ -92,9 +94,13 @@ var displayEvents = function() {
             newItem.appendChild(eventbox);
             //append new item to the main body
             mainBox.appendChild(newItem);
+            //refreshSave();
         }
-    }
-    
+    }  
+}
+
+var refreshSave = function() {
+    localStorage.setItem('textList', JSON.stringify(textEvents));
 }
 
 var saveEvents = function() {
@@ -168,7 +174,25 @@ var saveEvents = function() {
         displayEvents();
         var theModal = document.querySelector("#send-btn");
         theModal.setAttribute("data-dismiss", "modal");
+        //location.reload();
+        var modalBox = document.querySelector("#task-form-modal").getAttribute("aria-hidden");
+        console.log(modalBox);
+        function waitATick() {
+            setTimeout(function() {
+                clearModal();
+            }, 4000)
+        }
+        //clearModal();
     }    
+}
+
+var clearModal = function() {
+    var timeField = document.querySelector("#timeHolder");
+    timeField.textContent = "";
+    var modal = document.querySelector("#send-btn");
+    var modalBox = document.querySelector("#task-form-modal").getAttribute("aria-hidden");
+    console.log(modalBox);
+    //modal.removeAttribute("data-dismiss", "modal");
 }
 
 var removeAll = function() {
