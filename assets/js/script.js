@@ -197,7 +197,7 @@ async function fetchAff() {
 
 // fetch joke API
 async function fetchJoke() {
-    const resp = await fetch('http://api.icndb.com/jokes/random?');
+    const resp = await fetch('https://api.icndb.com/jokes/random?');
 
     return resp.json();
 }
