@@ -238,6 +238,7 @@ var extraMessages = '';
             sendText(event.what, event.number);
             extraMessages = '';
             textEvents.splice(i, 1);
+            displayEvents();
         }
     });
   }, 2000);
