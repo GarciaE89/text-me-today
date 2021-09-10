@@ -21,6 +21,7 @@ var displayEvents = function() {
     var len = textEvents.length;
     if(len === 0) {
         var mainBox = document.querySelector("#timeline")
+        mainBox.innerHTML = "";
         var mainArea = document.createElement("img");
         mainArea.setAttribute("src", "./assets/img/textmetoday.jpg")
         mainBox.appendChild(mainArea);
