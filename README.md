@@ -38,7 +38,7 @@
     <a href="https://github.com/GarciaE89/text-me-today"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/GarciaE89/text-me-today">View Demo</a>
+    <a href="https://garciae89.github.io/text-me-today/">View Deployment</a>
     ·
     <a href="https://github.com/GarciaE89/text-me-today/issues">Report Bug</a>
     ·
