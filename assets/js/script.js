@@ -38,12 +38,7 @@ var displayEvents = function() {
     if(textEvents) {
         for (var i = 0; i < textEvents.length; i++) {
             var newItem = document.createElement("dd");
-            if (i % 2 === 0) {
-                newItem.classList = "pos-right clearfix";
-            }
-            else {
-                newItem.classList = "pos-left clearfix";
-            }
+
             //create dot
             var dot = document.createElement("div");
             dot.classList = "circ";
@@ -67,7 +62,8 @@ var displayEvents = function() {
                 var endtime = time.slice(2,4);
                 var finaltime = starttime + ":" + endtime; 
             }
-            timeEl.textContent = finaltime;
+            var timeType = textEvents[i].timeOfDay;
+            timeEl.textContent = finaltime + timeType;
             newItem.appendChild(timeEl);
     
             //create event box
@@ -75,14 +71,7 @@ var displayEvents = function() {
             eventbox.classList = "events";
             //create img div
             var imgBox = document.createElement("div");
-            if (i % 2 === 0) {
-                imgBox.classList = "pull-left";
-            }
-            else {
-                imgBox.classList = "pull-right";
-            }
-            //imgBox.classList = "pull-left";
-            //create img
+
             var img = document.createElement("img");
             img.classList = "events-object img-rounded thumbnails";
             img.setAttribute("src", textEvents[i].icon);
@@ -97,21 +86,29 @@ var displayEvents = function() {
             var eventtitle = document.createElement("h4");
             eventtitle.classList = "events-heading";
             eventtitle.textContent = textEvents[i].title;
+            
+            var eventp = document.createElement("p");
+            //eventp.classList = "pull-right";
+            eventp.textContent = textEvents[i].what;
+
+            if (i % 2 === 0) {
+                imgBox.classList = "pull-left";
+                newItem.classList = "pos-right clearfix";
+            }
+            else {
+                imgBox.classList = "pull-right";
+                newItem.classList = "pos-left clearfix";
+            }
             //append title to event body
             eventBody.appendChild(eventtitle);
-            var eventp = document.createElement("p");
-            eventp.textContent = textEvents[i].what;
             //append p element to event body
             eventBody.appendChild(eventp);
-    
             //append event body to the eventbox
             eventbox.appendChild(eventBody);
-
             //append event box to dd
             newItem.appendChild(eventbox);
             //append new item to the main body
             mainBox.appendChild(newItem);
-            //refreshSave();
         }
     }  
 }
@@ -178,6 +175,7 @@ var saveEvents = function() {
             newEvent.title = "Scheduled text"
             newEvent.icon = "./assets/img/textme.gif"
         }
+        newEvent.timeOfDay = amPm;
         newEvent.what = theMessage;
         newEvent.number = phoneNumber;
         newEvent.city = cityWeather;
